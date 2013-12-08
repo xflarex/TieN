@@ -1,0 +1,17 @@
+CC=g++
+CFLAGS= $(shell pkg-config sdl --cflags --libs) -lSDL -lSDL_image -lSDL_ttf -lSDL_gfx
+LDFLAGS=
+SOURCES=main.cpp init.cpp loadTiles.cpp tiles.cpp timer.cpp grid.cpp clean_up.cpp leftPressed.cpp leftDrag.cpp getInput.cpp load_image.cpp copySurface.cpp editFile.cpp loadFile.cpp mouseSelection.cpp newFile.cpp tileView.cpp saveFile.cpp collisionView.cpp cyanTransparency.cpp
+OBJECTS=$(SOURCES:.cpp=.o)
+EXECUTABLE=TieNlveMake
+LIBS=incl.hpp clean_up.hpp copySurface.hpp editFile.hpp getInput.hpp grid.hpp init.hpp load_image.hpp loadFile.hpp main.hpp newFile.hpp saveFile.hpp tiles.hpp cyanTransparency.cpp 
+
+all: $(SOURCES) $(EXECUTABLE) $(LIBS) $(CFLAGS)
+	
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $@
+
+.cpp.o:
+	$(CC) $(CFLAGS) $(LIBS) $< -o $@
+
+
